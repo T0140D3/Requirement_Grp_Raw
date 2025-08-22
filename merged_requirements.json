@@ -1,0 +1,668 @@
+[
+  {
+    "req_id": "REQ-0928107 A",
+    "inputs": [],
+    "outputs": [
+      "TurnIndicatorReq",
+      "HornActivationReq"
+    ],
+    "Content": "Upon system startup, the turn signal is set to idle and horn activation request is set to inactive.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "turn signal",
+      "horn system"
+    ],
+    "verbs": [
+      "set"
+    ],
+    "nouns": [
+      "startup",
+      "turn signal",
+      "horn activation request",
+      "system",
+      "idle"
+    ]
+  },
+  {
+    "req_id": "REQ-0944597 B",
+    "inputs": [
+      "HornActivationDrivingSchoolDmd",
+      "HornRequest"
+    ],
+    "outputs": [
+      "HornActivationReq"
+    ],
+    "Content": "When either the driving school instructor issues a command to activate the horn or the driver requests to activate the horn, the system will produce a horn activation request.",
+    "actors": [
+      "driving school instructor",
+      "driver"
+    ],
+    "targets": [
+      "horn system"
+    ],
+    "verbs": [
+      "issue command",
+      "request"
+    ],
+    "nouns": [
+      "system",
+      "horn",
+      "command"
+    ]
+  },
+  {
+    "req_id": "REQ-0944599 C",
+    "inputs": [
+      "HornActivationDrivingSchoolDmd",
+      "HornRequest"
+    ],
+    "outputs": [
+      "HornActivationReq"
+    ],
+    "Content": "If both the driving school instructor and the driver have requested to deactivate the horn, then the system should generate a horn deactivation request.",
+    "actors": [
+      "driving school instructor",
+      "driver"
+    ],
+    "targets": [
+      "horn system"
+    ],
+    "verbs": [
+      "request"
+    ],
+    "nouns": [
+      "system",
+      "horn",
+      "deactivation"
+    ]
+  },
+  {
+    "req_id": "REQ-0944601 B",
+    "inputs": [
+      "HornRequest"
+    ],
+    "outputs": [
+      "HornActivationReq"
+    ],
+    "Content": "If the driver requests to activate the horn, then the system should generate a horn activation request.",
+    "actors": [
+      "driver"
+    ],
+    "targets": [
+      "horn system"
+    ],
+    "verbs": [
+      "activate",
+      "request"
+    ],
+    "nouns": [
+      "system",
+      "horn"
+    ]
+  },
+  {
+    "req_id": "REQ-0944602 B",
+    "inputs": [
+      "HornRequest"
+    ],
+    "outputs": [
+      "HornActivationReq"
+    ],
+    "Content": "When the driver turns off the horn, the system should respond by disabling the horn.",
+    "actors": [
+      "driver"
+    ],
+    "targets": [
+      "horn system"
+    ],
+    "verbs": [
+      "turn off"
+    ],
+    "nouns": [
+      "horn"
+    ]
+  },
+  {
+    "req_id": "REQ-0937070 C",
+    "inputs": [],
+    "outputs": [
+      "SoundWarningCtrl",
+      "ManualSoundWarningAvailability",
+      "PanicModeSoundWarningAvailability",
+      "AlarmSoundWarningAvailability",
+      "TR_SoundWarningAvailability",
+      "Horn_TR_Request",
+      "FOTA_Inhibition"
+    ],
+    "Content": "Upon startup, the system should set various sound-related parameters to specific initial values.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "sound warning control",
+      "alarm sound warning availability",
+      "panic mode sound warning availability",
+      "TR sound warning availability",
+      "FOTA inhibition",
+      "manual sound warning availability",
+      "horn_TR request"
+    ],
+    "verbs": [
+      "initialize",
+      "set"
+    ],
+    "nouns": [
+      "sound warning control",
+      "initial values",
+      "alarm sound warning availability",
+      "panic mode sound warning availability",
+      "TR sound warning availability",
+      "FOTA inhibition",
+      "manual sound warning availability",
+      "horn_TR request"
+    ]
+  },
+  {
+    "req_id": "REQ-0937071 C",
+    "inputs": [
+      "VehicleModeConfiguration",
+      "FOTA_Inhibition"
+    ],
+    "outputs": [
+      "ManualSoundWarningAvailability"
+    ],
+    "Content": "When the vehicle is in any of the modes: Plant, Transport, or Customer and there's no ongoing FOTA update, the system should allow manual sound warning. Otherwise, the manual sound warning should be disabled.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "manual sound warning",
+      "vehicle"
+    ],
+    "verbs": [
+      "make unavailable",
+      "enable"
+    ],
+    "nouns": [
+      "FOTA update",
+      "manual sound warning",
+      "vehicle mode"
+    ]
+  },
+  {
+    "req_id": "REQ-0998254 B",
+    "inputs": [
+      "VehicleModeConfiguration",
+      "VehicleIgnitionStatus",
+      "PropulsionSystemActive",
+      "FOTA_Inhibition"
+    ],
+    "outputs": [
+      "PanicModeSoundWarningAvailability"
+    ],
+    "Content": "If the vehicle is in customer mode and either the vehicle ignition status is locked or the propulsion system is inactive AND there's no ongoing FOTA update, the system should allow the sound warning. Otherwise, the sound warning should be disabled.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "sound warning",
+      "vehicle"
+    ],
+    "verbs": [
+      "make unavailable",
+      "enable"
+    ],
+    "nouns": [
+      "customer mode",
+      "propulsion system",
+      "vehicle ignition status",
+      "FOTA update",
+      "sound warning"
+    ]
+  },
+  {
+    "req_id": "REQ-0998256 B",
+    "inputs": [
+      "VehicleModeConfiguration",
+      "VehicleIgnitionStatus"
+    ],
+    "outputs": [
+      "AlarmSoundWarningAvailability"
+    ],
+    "Content": "The system should enable the sound warning when the vehicle is in customer mode and ignition status is 0, otherwise make it unavailable.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "vehicle",
+      "ignition status",
+      "sound warning"
+    ],
+    "verbs": [
+      "make unavailable",
+      "enable"
+    ],
+    "nouns": [
+      "customer mode",
+      "ignition status",
+      "vehicle",
+      "sound warning"
+    ]
+  },
+  {
+    "req_id": "REQ-0998257 A",
+    "inputs": [],
+    "outputs": [
+      "TR_SoundWarningAvailability"
+    ],
+    "Content": "The system should always have the thermal runaway hazard sound warning available.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "thermal runaway hazard sound warning"
+    ],
+    "verbs": [
+      "have"
+    ],
+    "nouns": [
+      "system",
+      "thermal runaway hazard sound warning"
+    ]
+  },
+  {
+    "req_id": "REQ-0998269 B",
+    "inputs": [
+      "VehOTAState",
+      "VehOTASubState"
+    ],
+    "outputs": [
+      "FOTA_Inhibition"
+    ],
+    "Content": "During the start of a FOTA update, when both the vehicle's OTA state is 'Update' and its sub-state transitions to 'INSTALL', sound warnings will be muted.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "sound system",
+      "FOTA_Inhibition"
+    ],
+    "verbs": [
+      "transition",
+      "start"
+    ],
+    "nouns": [
+      "vehicle's OTA state",
+      "sound warnings",
+      "FOTA_Inhibition",
+      "INSTALL",
+      "FOTA update",
+      "sub-state"
+    ]
+  },
+  {
+    "req_id": "REQ-0998271 B",
+    "inputs": [
+      "VehOTAState"
+    ],
+    "outputs": [
+      "FOTA_Inhibition"
+    ],
+    "Content": "Once a FOTA update ends and the vehicle's OTA state becomes 'Standby', sound warnings will no longer be muted.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "sound system",
+      "FOTA_Inhibition"
+    ],
+    "verbs": [
+      "become",
+      "end"
+    ],
+    "nouns": [
+      "standby",
+      "vehicle's OTA state",
+      "sound warnings",
+      "FOTA_Inhibition",
+      "FOTA update"
+    ]
+  },
+  {
+    "req_id": "REQ-0937072 D",
+    "inputs": [
+      "ManualSoundWarningAvailability",
+      "HornActivationReq",
+      "MAN_HORN_COOL_DOWN"
+    ],
+    "outputs": [
+      "SoundWarningCtrl",
+      "TIME_MAN_HORN_ON",
+      "TIME_MAN_HORN_OFF"
+    ],
+    "Content": "When manual sound warning is available, manual horn activation is requested, and there's no cool down on the Manual Horn, the system should produce audible sound warning at full volume. The timer TIME_MAN_HORN_ON resets to 0 and starts counting, while the timer TIME_MAN_HORN_OFF is frozen.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "timer TIME_MAN_HORN_OFF",
+      "manual sound warning",
+      "Manual Horn",
+      "timer TIME_MAN_HORN_ON"
+    ],
+    "verbs": [
+      "control",
+      "freeze",
+      "reset",
+      "start counting"
+    ],
+    "nouns": [
+      "audible sound",
+      "volume",
+      "timer",
+      "cool down",
+      "manual horn activation",
+      "Manual Horn"
+    ]
+  },
+  {
+    "req_id": "REQ-0939555 D",
+    "inputs": [
+      "AlarmSoundWarningAvailability",
+      "TheftAlarmStatus"
+    ],
+    "outputs": [
+      "SoundWarningCtrl",
+      "HORN_ALARM_FREQ",
+      "HORN_ALARM_DUTY_CYCLE"
+    ],
+    "Content": "When the theft alarm sound warning is available and the horn is requested for the theft alarm system, the audible signal should be produced at the frequency HORN_ALARM_FREQ with a duty cycle of HORN_ALARM_DUTY_CYCLE.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "horn",
+      "theft alarm sound warning",
+      "theft alarm system"
+    ],
+    "verbs": [
+      "control",
+      "produce"
+    ],
+    "nouns": [
+      "audible signal",
+      "HORN_ALARM_FREQ",
+      "HORN_ALARM_DUTY_CYCLE",
+      "frequency",
+      "duty cycle"
+    ]
+  },
+  {
+    "req_id": "REQ-0986424 C",
+    "inputs": [
+      "PanicModeSoundWarningAvailability",
+      "PanicModeActiveRequest",
+      "HORN_PANIC_FREQ",
+      "HORN_PANIC_DUTY_CYCLE"
+    ],
+    "outputs": [
+      "SoundWarningCtrl"
+    ],
+    "Content": "When both panic mode sound warning is available and the horn is activated for panic mode, control the audible signal at a specific frequency with a certain duty cycle, resulting in full control of the sound warning.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "horn system",
+      "sound warning"
+    ],
+    "verbs": [
+      "control",
+      "activate"
+    ],
+    "nouns": [
+      "duty cycle",
+      "sound warning",
+      "frequency",
+      "panic mode"
+    ]
+  },
+  {
+    "req_id": "REQ-0937073 D",
+    "inputs": [
+      "ManualSoundWarningAvailability",
+      "HornActivationReq",
+      "TIME_MAN_HORN_ON",
+      "T_MAX_MAN_HORN_ON",
+      "TheftAlarmStatus",
+      "AlarmSoundWarningAvailability",
+      "PanicModeActiveRequest",
+      "PanicModeSoundWarningAvailability",
+      "Horn_TR_Request",
+      "TR_SoundWarningAvailability"
+    ],
+    "outputs": [
+      "SoundWarningCtrl",
+      "TIME_MAN_HORN_OFF",
+      "TIME_MAN_HORN_ON"
+    ],
+    "Content": "Under specific conditions (manual horn activation is not requested or active for too long, horn not requested for theft alarm system, panic mode, or thermal runaway), the audible signal should not be controlled. The subsystem should also reset and start counting the timer TIME_MAN_HORN_OFF, while freezing the timer TIME_MAN_HORN_ON.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "audible signal",
+      "timer TIME_MAN_HORN_OFF",
+      "timer TIME_MAN_HORN_ON"
+    ],
+    "verbs": [
+      "control",
+      "freeze",
+      "reset",
+      "start counting"
+    ],
+    "nouns": [
+      "manual horn activation",
+      "thief alarm system",
+      "panic mode",
+      "thermal runaway"
+    ]
+  },
+  {
+    "req_id": "REQ-0986468 B",
+    "inputs": [
+      "multiple different horn behaviours",
+      "simultaneously activated"
+    ],
+    "outputs": [
+      "highest priority sub system"
+    ],
+    "Content": "When multiple horn behaviors are activated simultaneously, the system should prioritize and activate only the highest priority subsystem according to the given order: horn requests, manual request, thermal runaway request, panic mode request, theft alarm request.",
+    "actors": [
+      "user",
+      "system"
+    ],
+    "targets": [
+      "horn system"
+    ],
+    "verbs": [
+      "prioritize",
+      "activate"
+    ],
+    "nouns": [
+      "thermal runaway request",
+      "horn behavior",
+      "horn requests",
+      "theft alarm request",
+      "panic mode request",
+      "subsystem",
+      "manual request",
+      "priority order"
+    ]
+  },
+  {
+    "req_id": "REQ-0986471 C",
+    "inputs": [
+      "TIME_MAN_HORN_ON",
+      "T_MAX_MAN_HORN_ON"
+    ],
+    "outputs": [
+      "MAN_HORN_COOL_DOWN"
+    ],
+    "Content": "If the manual horn is active for a duration longer than T_MAX_MAN_HORN_ON, then the Manual Horn Cooldown will activate.",
+    "actors": [
+      "user",
+      "system"
+    ],
+    "targets": [
+      "manual horn",
+      "Manual Horn Cooldown"
+    ],
+    "verbs": [
+      "activate"
+    ],
+    "nouns": [
+      "manual horn",
+      "time",
+      "Manual Horn Cooldown",
+      "T_MAX_MAN_HORN_ON"
+    ]
+  },
+  {
+    "req_id": "REQ-0986472 C",
+    "inputs": [
+      "TIME_MAN_HORN_OFF",
+      "T_MAN_HORN_COOL_DOWN",
+      "HornActivationReq",
+      "T_HORN_REQ_COOL_DOWN"
+    ],
+    "outputs": [
+      "MAN_HORN_COOL_DOWN"
+    ],
+    "Content": "If the manual horn has not been activated for a duration equal to or greater than T_MAN_HORN_COOL_DOWN and no request for manual horn activation is made during T_HORN_REQ_COOL_DOWN, then the manual Horn Cooldown deactivates.",
+    "actors": [
+      "driver"
+    ],
+    "targets": [
+      "manual Horn Cooldown",
+      "manual horn"
+    ],
+    "verbs": [
+      "not request",
+      "activate"
+    ],
+    "nouns": [
+      "time",
+      "cooldown",
+      "T_MAN_HORN_COOL_DOWN",
+      "manual horn",
+      "T_HORN_REQ_COOL_DOWN"
+    ]
+  },
+  {
+    "req_id": "REQ-0998265 B",
+    "inputs": [
+      "BatteryThermalRunawayAlert",
+      "SafetyStandstill"
+    ],
+    "outputs": [
+      "Horn_TR_Request"
+    ],
+    "Content": "If both conditions are met: a request for thermal runaway hazard warning is received and the vehicle is at a standstill, then the system sets the internal request for thermal runaway hazard warning to true.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "thermal runaway hazard warning",
+      "vehicle"
+    ],
+    "verbs": [
+      "set",
+      "receive"
+    ],
+    "nouns": [
+      "vehicle",
+      "thermal runaway hazard warning",
+      "request",
+      "standstill"
+    ]
+  },
+  {
+    "req_id": "REQ-0998267 B",
+    "inputs": [
+      "TR_SoundWarningAvailability",
+      "Horn_TR_Request",
+      "HORN_TR_FREQ",
+      "HORN_TR_DUTY_CYCLE"
+    ],
+    "outputs": [
+      "SoundWarningCtrl"
+    ],
+    "Content": "If the thermal runaway sound warning is available and the internal thermal runaway warning is requested, then control the warning audio signal at a specific frequency with a certain duty cycle.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "thermal runaway hazard",
+      "warning audible signal"
+    ],
+    "verbs": [
+      "control"
+    ],
+    "nouns": [
+      "duty cycle",
+      "frequency"
+    ]
+  },
+  {
+    "req_id": "REQ-0998450 B",
+    "inputs": [
+      "Horn_TR_Request",
+      "HornActivationReq"
+    ],
+    "outputs": [],
+    "Content": "If the internal request for thermal runaway hazard warning is active and HornActivationReq changes from off to on, then turn off the internal request for thermal runaway hazard warning.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "internal request for thermal runaway hazard",
+      "horn system"
+    ],
+    "verbs": [
+      "activate",
+      "turn off"
+    ],
+    "nouns": [
+      "HornActivationReq"
+    ]
+  },
+  {
+    "req_id": "REQ-0899267 D",
+    "inputs": [
+      "SoundWarningCtrl"
+    ],
+    "outputs": [
+      "PhOSoundWarning"
+    ],
+    "Content": "When a sound control value of 100% is received, the horn system should be turned on within 30 milliseconds. Otherwise, the horn system should be turned off within 30 milliseconds.",
+    "actors": [
+      "system"
+    ],
+    "targets": [
+      "horn system"
+    ],
+    "verbs": [
+      "turn",
+      "receive",
+      "switch"
+    ],
+    "nouns": [
+      "sound control value",
+      "100%",
+      "horn system"
+    ]
+  }
+]

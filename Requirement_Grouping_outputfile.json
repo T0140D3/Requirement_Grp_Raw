@@ -1,0 +1,421 @@
+[
+    {
+        "usecase": "Horn Control",
+	"Description":"This use case illustrates the control of different modes using Horn logic",
+        "inputs": [
+            "VehicleIgnitionStatus[In]",
+            "TIME_MAN_HORN_ON[In]",
+            "ManualSoundWarningAvailability[In]",
+            "AlarmSoundWarningAvailability[In]",
+            "SafetyStandstill[NA]",
+            "MAN_HORN_COOL_DOWN[In]",
+            "SoundWarningCtrl[P][Wire_STLA]",
+            "HORN_PANIC_DUTY_CYCLE[In]",
+            "Horn_TR_Request[In]",
+            "BatteryThermalRunawayAlert[C][FD14_ZCU_F_DATA_7(FD_CAN14)]",
+            "HORN_TR_DUTY_CYCLE[In]",
+            "VehicleModeConfiguration[In]",
+            "HORN_PANIC_FREQ[In]",
+            "FOTA_Inhibition[In]",
+            "TR_SoundWarningAvailability[In]",
+            "PanicModeActiveRequest[In]",
+            "TheftAlarmStatus[In]",
+            "PropulsionSystemActive[In]",
+            "T_MAX_MAN_HORN_ON[In]",
+            "HornActivationReq[In]",
+            "PanicModeSoundWarningAvailability[In]",
+            "HornRequest[C][Wire_STLA]",
+            "HornActivationDrivingSchoolDmd[C][HS4_DSM_DATA_1(HS_CAN4)]",
+            "HORN_TR_FREQ[In]"
+        ],
+        "outputs": [
+            "PhOSoundWarning[In]"
+        ],
+        "PLM Parameters": [
+            "T_MAX_MAN_HORN_ON",
+            "HORN_PANIC_DUTY_CYCLE",
+            "HORN_PANIC_FREQ",
+            "HORN_TR_DUTY_CYCLE",
+            "HORN_TR_FREQ"
+        ],
+        "Caliberation Parameters": "",
+        "Req_ids": [
+            {
+                "req_id": "REQ-0928107 A",
+                "Content": "At initialization the following flows will be set as follows:TurnIndicatorReq = IDLEHornActivationReq = FALSE",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0944597 B",
+                "Content": "IF the driving school instructor has just demanded to activate the horn (HornActivationDrivingSchoolDmd has a transition from a different value to ACTIVE)OR the driver has just requested to activate the horn (HornRequest has a transition from a different value to True)THEN the system shall generate a horn activation request (HornActivationReq = True)",
+                "DiversityExpression": [
+                    "HP-0001187 [ STELLANTIS DICTIONARY Q3_2024 - \u221e ] AND CBX OPTION_DRIVER_SCHOOL_MODULE(CBX_01 WITH)"
+                ]
+            },
+            {
+                "req_id": "REQ-0944599 C",
+                "Content": "IF the driving school instructor requested to deactivate the horn (HornActivationDrivingSchoolDmd = NOT_ACTIVE)AND the driver requested to deactivate the horn (HornRequest = False)THEN the system shall generate a horn deactivation request (HornActivationReq = False)",
+                "DiversityExpression": [
+                    "HP-0001187 [ STELLANTIS DICTIONARY Q3_2024 - \u221e ] AND CBX OPTION_DRIVER_SCHOOL_MODULE(CBX_01 WITH)"
+                ]
+            },
+            {
+                "req_id": "REQ-0944601 B",
+                "Content": "IF the driver requests to activate the horn (HornRequest = True)THEN the system shall generate a horn activation request (HornActivationReq = True)",
+                "DiversityExpression": [
+                    "HP-0001187 [ STELLANTIS DICTIONARY Q3_2024 - \u221e ] AND CBX OPTION_DRIVER_SCHOOL_MODULE(CBX_00 WITHOUT)"
+                ]
+            },
+            {
+                "req_id": "REQ-0944602 B",
+                "Content": "IF the driver requests to deactivate the horn (HornRequest = False)THEN the system shall generate a horn deactivation request (HornActivationReq = False)",
+                "DiversityExpression": [
+                    "HP-0001187 [ STELLANTIS DICTIONARY Q3_2024 - \u221e ] AND CBX OPTION_DRIVER_SCHOOL_MODULE(CBX_00 WITHOUT)"
+                ]
+            },
+            {
+                "req_id": "REQ-0937070 C",
+                "Content": "The system shall initialize the output flows at the following values:(SoundWarningCtrl=0%)(ManualSoundWarningAvailability = False)(PanicModeSoundWarningAvailability = False)(AlarmSoundWarningAvailability = False)(TR_SoundWarningAvailability = False)(Horn_TR_Request = False)(FOTA_Inhibition = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0937071 C",
+                "Content": "IF the vehicle is in plant, transport or customer mode[(VehicleModeConfiguration = Plant_Mode)OR(VehicleModeConfiguration = Logistic_mode)OR(VehicleModeConfiguration = Client)]AND there is no FOTA update in progress(FOTA_Inhibition = False)THEN the system shall enable the manual sound warning (ManualSoundWarningAvailability = True)ElseThe system shall make unavailable the manual sound warning(ManualSoundWarningAvailability = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998254 B",
+                "Content": "IF the vehicle is customer mode(VehicleModeConfiguration = Client) AND vehicle is in state 0 or state 1[(VehicleIgnitionStatus = IGN_LK)OR(PropulsionSystemActive = FALSE)]AND there is no FOTA update in progress(FOTA_Inhibition = False)THEN the system shall enable the sound warning (PanicModeSoundWarningAvailability = True)ELSEThe system shall make unavailable the sound warning(PanicModeSoundWarningAvailability = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998256 B",
+                "Content": "IF the vehicle is in customer mode(VehicleModeConfiguration = Client)AND vehicle is in state 0(VehicleIgnitionStatus = IGN_LK)THEN the system shall enable the sound warning (AlarmSoundWarningAvailability = True)ELSEThe system shall make unavailable the theft alarm sound warning(AlarmSoundWarningAvailability = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998257 A",
+                "Content": "The system shall always make the thermal runaway hazard sound warning available(TR_SoundWarningAvailability = True)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0937072 D",
+                "Content": "IF the manual sound warning is available(ManualSoundWarningAvailability = True)AND the manual horn activation is requested (HornActivationReq = True)AND there is no cool down of the Manual Horn(MAN_HORN_COOL_DOWN = Not Active)THEN the subsystem shall control the audible sound warning(SoundWarningCtrl = 100%) AND the subsystem shall reset the timer TIME_MAN_HORN_ON to 0 and start to countAND the subsystem shall freeze the timer TIME_MAN_HORN_OFF",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0939555 D",
+                "Content": "IF the theft alarm sound warning is available(AlarmSoundWarningAvailability = True)AND the horn is requested for theft alarm system(TheftAlarmStatus = Active Alarm State Horn)         THEN the warning audible signal shall be controlled at the frequency (HORN_ALARM_FREQ) with a (HORN_ALARM_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+                "DiversityExpression": [
+                    "HP-0001187 [ STELLANTIS DICTIONARY Q4_2024 - \u221e ] AND DLH CHARACTERISTIC ALARMS(DLH_03 WITH VEHICLE HORN) AND NOT DAB ANTI-THEFT ALARM(DAB_00 WITHOUT)"
+                ]
+            },
+            {
+                "req_id": "REQ-0986424 C",
+                "Content": "IF the panic mode sound warning is available(PanicModeSoundWarningAvailability = True)AND the horn is requested for panic mode(PanicModeActiveRequest = Active)         THEN the warning audible signal shall be controlled at the frequency (HORN_PANIC_FREQ) with a (HORN_PANIC_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+                "DiversityExpression": [
+                    "HP-0001187 [ STELLANTIS DICTIONARY Q1_2025 - \u221e ] AND ( D15 PANIC MODE (  D15_01 WITH )  AND  CHT TYPE_PANIC_MODE (  CHT_02 HAZARD_WARNING_AND_HORN ) )"
+                ]
+            },
+            {
+                "req_id": "REQ-0937073 D",
+                "Content": "IF the manual horn activation is not requested[(ManualSoundWarningAvailability = False)OR(HornActivationReq = False)OR the manual horn is active for a too long time(TIME_MAN_HORN_ON>=T_MAX_MAN_HORN_ON)]\u202fAND the horn is not requested for theft alarm System[(TheftAlarmStatus <>Active Alarm State Horn)OR(AlarmSoundWarningAvailability =False)]\u202fAND the horn is not requested for panic mode[(PanicModeActiveRequest =Not_Active)OR(PanicModeSoundWarningAvailability = False)]\u202fAND the horn is not requested for thermal runaway[(Horn_TR_Request = False)OR(TR_SoundWarningAvailability = False)]\u202fTHENthe warning audible signal shall not be controlled(SoundWarningCtrl=0%)\u202fANDthesubsystem shall reset the timer TIME_MAN_HORN_OFF to 0 and start to countAND the subsystem shall freeze the timerTIME_MAN_HORN_ON",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998265 B",
+                "Content": "IF the following condition becomes true [A request for thermal runaway hazard warning is received(BatteryThermalRunawayAlert = Thermal_Runaway_Alert)AND the vehicle is at a standstill(SafetyStandstill = TRUE)]THEN the system shall set the internal request for thermal runaway hazard warning to true (Horn_TR_Request = True)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998267 B",
+                "Content": "IF the thermal runaway hazard sound warning is available(TR_SoundWarningAvailability = True)AND the internal thermal runaway hazard warning is requested (Horn_TR_Request = True)         THEN the warning audible signal shall be controlled at the frequency (HORN_TR_FREQ) with a (HORN_TR_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0899267 D",
+                "Content": "IF a sound control value is received(SoundWarningCtrl = 100%) THEN the system shall switch ON the Horn system (PhOSoundWarning = HORN_ON_INTENSITY) in less than <30 ms>ELSE the system shall switch OFF the Horn system(PhOSoundWarning= HORN_OFF_INTENSITY) in less than <30 ms>",
+                "DiversityExpression": ""
+            }
+        ]
+    },
+    {
+        "usecase": "Sound Warning Management",
+	"Description":"This use case describes how Horn logic manages different mode",
+        "inputs": [
+            "SoundWarningCtrl[P][Wire_STLA]",
+            "Horn_TR_Request[In]",
+            "TR_SoundWarningAvailability[In]",
+            "BatteryThermalRunawayAlert[C][FD14_ZCU_F_DATA_7(FD_CAN14)]",
+            "HORN_TR_DUTY_CYCLE[In]",
+            "SafetyStandstill[NA]",
+            "HORN_TR_FREQ[In]"
+        ],
+        "outputs": [
+            "PhOSoundWarning[In]"
+        ],
+        "PLM Parameters": [
+            "HORN_TR_DUTY_CYCLE",
+            "HORN_TR_FREQ"
+        ],
+        "Caliberation Parameters": "",
+        "Req_ids": [
+            {
+                "req_id": "REQ-0937070 C",
+                "Content": "The system shall initialize the output flows at the following values:(SoundWarningCtrl=0%)(ManualSoundWarningAvailability = False)(PanicModeSoundWarningAvailability = False)(AlarmSoundWarningAvailability = False)(TR_SoundWarningAvailability = False)(Horn_TR_Request = False)(FOTA_Inhibition = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998257 A",
+                "Content": "The system shall always make the thermal runaway hazard sound warning available(TR_SoundWarningAvailability = True)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998265 B",
+                "Content": "IF the following condition becomes true [A request for thermal runaway hazard warning is received(BatteryThermalRunawayAlert = Thermal_Runaway_Alert)AND the vehicle is at a standstill(SafetyStandstill = TRUE)]THEN the system shall set the internal request for thermal runaway hazard warning to true (Horn_TR_Request = True)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998267 B",
+                "Content": "IF the thermal runaway hazard sound warning is available(TR_SoundWarningAvailability = True)AND the internal thermal runaway hazard warning is requested (Horn_TR_Request = True)         THEN the warning audible signal shall be controlled at the frequency (HORN_TR_FREQ) with a (HORN_TR_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0899267 D",
+                "Content": "IF a sound control value is received(SoundWarningCtrl = 100%) THEN the system shall switch ON the Horn system (PhOSoundWarning = HORN_ON_INTENSITY) in less than <30 ms>ELSE the system shall switch OFF the Horn system(PhOSoundWarning= HORN_OFF_INTENSITY) in less than <30 ms>",
+                "DiversityExpression": ""
+            }
+        ]
+    },
+    {
+        "usecase": "Manual Sound Warning",
+        "Description":"This use case describes the end-to-end flow of the manual horn mode",
+        "inputs": [
+            "T_MAX_MAN_HORN_ON[In]",
+            "HornActivationReq[In]",
+            "SoundWarningCtrl[P][Wire_STLA]",
+            "T_MAN_HORN_COOL_DOWN[In]",
+            "PanicModeSoundWarningAvailability[In]",
+            "TIME_MAN_HORN_ON[In]",
+            "FOTA_Inhibition[In]",
+            "ManualSoundWarningAvailability[In]",
+            "Horn_TR_Request[In]",
+            "TIME_MAN_HORN_OFF[In]",
+            "TR_SoundWarningAvailability[In]",
+            "PanicModeActiveRequest[In]",
+            "T_HORN_REQ_COOL_DOWN[In]",
+            "AlarmSoundWarningAvailability[In]",
+            "TheftAlarmStatus[In]",
+            "MAN_HORN_COOL_DOWN[In]",
+            "VehicleModeConfiguration[In]"
+        ],
+        "outputs": [
+            "PhOSoundWarning[In]"
+        ],
+        "PLM Parameters": [
+            "T_HORN_REQ_COOL_DOWN",
+            "T_MAX_MAN_HORN_ON",
+            "T_MAN_HORN_COOL_DOWN"
+        ],
+        "Caliberation Parameters": "",
+        "Req_ids": [
+            {
+                "req_id": "REQ-0937070 C",
+                "Content": "The system shall initialize the output flows at the following values:(SoundWarningCtrl=0%)(ManualSoundWarningAvailability = False)(PanicModeSoundWarningAvailability = False)(AlarmSoundWarningAvailability = False)(TR_SoundWarningAvailability = False)(Horn_TR_Request = False)(FOTA_Inhibition = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0937071 C",
+                "Content": "IF the vehicle is in plant, transport or customer mode[(VehicleModeConfiguration = Plant_Mode)OR(VehicleModeConfiguration = Logistic_mode)OR(VehicleModeConfiguration = Client)]AND there is no FOTA update in progress(FOTA_Inhibition = False)THEN the system shall enable the manual sound warning (ManualSoundWarningAvailability = True)ElseThe system shall make unavailable the manual sound warning(ManualSoundWarningAvailability = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0937072 D",
+                "Content": "IF the manual sound warning is available(ManualSoundWarningAvailability = True)AND the manual horn activation is requested (HornActivationReq = True)AND there is no cool down of the Manual Horn(MAN_HORN_COOL_DOWN = Not Active)THEN the subsystem shall control the audible sound warning(SoundWarningCtrl = 100%) AND the subsystem shall reset the timer TIME_MAN_HORN_ON to 0 and start to countAND the subsystem shall freeze the timer TIME_MAN_HORN_OFF",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0937073 D",
+                "Content": "IF the manual horn activation is not requested[(ManualSoundWarningAvailability = False)OR(HornActivationReq = False)OR the manual horn is active for a too long time(TIME_MAN_HORN_ON>=T_MAX_MAN_HORN_ON)]\u202fAND the horn is not requested for theft alarm System[(TheftAlarmStatus <>Active Alarm State Horn)OR(AlarmSoundWarningAvailability =False)]\u202fAND the horn is not requested for panic mode[(PanicModeActiveRequest =Not_Active)OR(PanicModeSoundWarningAvailability = False)]\u202fAND the horn is not requested for thermal runaway[(Horn_TR_Request = False)OR(TR_SoundWarningAvailability = False)]\u202fTHENthe warning audible signal shall not be controlled(SoundWarningCtrl=0%)\u202fANDthesubsystem shall reset the timer TIME_MAN_HORN_OFF to 0 and start to countAND the subsystem shall freeze the timerTIME_MAN_HORN_ON",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0986471 C",
+                "Content": "IF the manual horn is active for a too long time(TIME_MAN_HORN_ON >= T_MAX_MAN_HORN_ONTHEN the Manual Horn Cooldown activates(MAN_HORN_COOL_DOWN=Active)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0986472 C",
+                "Content": "IF the manual horn is inactive for enough time(TIME_MAN_HORN_OFF >= T_MAN_HORN_COOL_DOWN)AND the manual horn activation is NOT requested during T_HORN_REQ_COOL_DOWN(HornActivationReq = False during T_HORN_REQ_COOL_DOWN) THEN the manual Horn Cooldown deactivates(MAN_HORN_COOL_DOWN = Not active)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0899267 D",
+                "Content": "IF a sound control value is received(SoundWarningCtrl = 100%) THEN the system shall switch ON the Horn system (PhOSoundWarning = HORN_ON_INTENSITY) in less than <30 ms>ELSE the system shall switch OFF the Horn system(PhOSoundWarning= HORN_OFF_INTENSITY) in less than <30 ms>",
+                "DiversityExpression": ""
+            }
+        ]
+    },
+    {
+        "usecase": "Theft Alarm Sound Warning Control",
+	  "Description":"This use case describes how the theft alarm works",
+        "inputs": [
+            "SoundWarningCtrl[P][Wire_STLA]",
+            "VehicleIgnitionStatus[In]",
+            "AlarmSoundWarningAvailability[In]",
+            "TheftAlarmStatus[In]",
+            "VehicleModeConfiguration[In]"
+        ],
+        "outputs": [
+            "PhOSoundWarning[In]"
+        ],
+        "PLM Parameters": [],
+        "Caliberation Parameters": "",
+        "Req_ids": [
+            {
+                "req_id": "REQ-0937070 C",
+                "Content": "The system shall initialize the output flows at the following values:(SoundWarningCtrl=0%)(ManualSoundWarningAvailability = False)(PanicModeSoundWarningAvailability = False)(AlarmSoundWarningAvailability = False)(TR_SoundWarningAvailability = False)(Horn_TR_Request = False)(FOTA_Inhibition = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998256 B",
+                "Content": "IF the vehicle is in customer mode(VehicleModeConfiguration = Client)AND vehicle is in state 0(VehicleIgnitionStatus = IGN_LK)THEN the system shall enable the sound warning (AlarmSoundWarningAvailability = True)ELSEThe system shall make unavailable the theft alarm sound warning(AlarmSoundWarningAvailability = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0939555 D",
+                "Content": "IF the theft alarm sound warning is available(AlarmSoundWarningAvailability = True)AND the horn is requested for theft alarm system(TheftAlarmStatus = Active Alarm State Horn)         THEN the warning audible signal shall be controlled at the frequency (HORN_ALARM_FREQ) with a (HORN_ALARM_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+                "DiversityExpression": [
+                    "HP-0001187 [ STELLANTIS DICTIONARY Q4_2024 - \u221e ] AND DLH CHARACTERISTIC ALARMS(DLH_03 WITH VEHICLE HORN) AND NOT DAB ANTI-THEFT ALARM(DAB_00 WITHOUT)"
+                ]
+            },
+            {
+                "req_id": "REQ-0899267 D",
+                "Content": "IF a sound control value is received(SoundWarningCtrl = 100%) THEN the system shall switch ON the Horn system (PhOSoundWarning = HORN_ON_INTENSITY) in less than <30 ms>ELSE the system shall switch OFF the Horn system(PhOSoundWarning= HORN_OFF_INTENSITY) in less than <30 ms>",
+                "DiversityExpression": ""
+            }
+        ]
+    },
+    {
+        "usecase": "Panic Mode Sound Warning Control",
+	  "Description":"This use case describes how the panic mode works",
+        "inputs": [
+            "PropulsionSystemActive[In]",
+            "SoundWarningCtrl[P][Wire_STLA]",
+            "VehicleIgnitionStatus[In]",
+            "HORN_PANIC_DUTY_CYCLE[In]",
+            "PanicModeSoundWarningAvailability[In]",
+            "HORN_PANIC_FREQ[In]",
+            "FOTA_Inhibition[In]",
+            "PanicModeActiveRequest[In]",
+            "VehicleModeConfiguration[In]"
+        ],
+        "outputs": [
+            "PhOSoundWarning[In]"
+        ],
+        "PLM Parameters": [
+            "HORN_PANIC_FREQ",
+            "HORN_PANIC_DUTY_CYCLE"
+        ],
+        "Caliberation Parameters": "",
+        "Req_ids": [
+            {
+                "req_id": "REQ-0937070 C",
+                "Content": "The system shall initialize the output flows at the following values:(SoundWarningCtrl=0%)(ManualSoundWarningAvailability = False)(PanicModeSoundWarningAvailability = False)(AlarmSoundWarningAvailability = False)(TR_SoundWarningAvailability = False)(Horn_TR_Request = False)(FOTA_Inhibition = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998254 B",
+                "Content": "IF the vehicle is customer mode(VehicleModeConfiguration = Client) AND vehicle is in state 0 or state 1[(VehicleIgnitionStatus = IGN_LK)OR(PropulsionSystemActive = FALSE)]AND there is no FOTA update in progress(FOTA_Inhibition = False)THEN the system shall enable the sound warning (PanicModeSoundWarningAvailability = True)ELSEThe system shall make unavailable the sound warning(PanicModeSoundWarningAvailability = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0986424 C",
+                "Content": "IF the panic mode sound warning is available(PanicModeSoundWarningAvailability = True)AND the horn is requested for panic mode(PanicModeActiveRequest = Active)         THEN the warning audible signal shall be controlled at the frequency (HORN_PANIC_FREQ) with a (HORN_PANIC_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+                "DiversityExpression": [
+                    "HP-0001187 [ STELLANTIS DICTIONARY Q1_2025 - \u221e ] AND ( D15 PANIC MODE (  D15_01 WITH )  AND  CHT TYPE_PANIC_MODE (  CHT_02 HAZARD_WARNING_AND_HORN ) )"
+                ]
+            },
+            {
+                "req_id": "REQ-0899267 D",
+                "Content": "IF a sound control value is received(SoundWarningCtrl = 100%) THEN the system shall switch ON the Horn system (PhOSoundWarning = HORN_ON_INTENSITY) in less than <30 ms>ELSE the system shall switch OFF the Horn system(PhOSoundWarning= HORN_OFF_INTENSITY) in less than <30 ms>",
+                "DiversityExpression": ""
+            }
+        ]
+    },
+    {
+        "usecase": "Thermal Runaway hazard sound warning Control",
+	  "Description":"This use case describes the thermal sound warning mode",
+        "inputs": [
+            "SoundWarningCtrl[P][Wire_STLA]",
+            "Horn_TR_Request[In]",
+            "TR_SoundWarningAvailability[In]",
+            "BatteryThermalRunawayAlert[C][FD14_ZCU_F_DATA_7(FD_CAN14)]",
+            "HORN_TR_DUTY_CYCLE[In]",
+            "SafetyStandstill[NA]",
+            "HORN_TR_FREQ[In]"
+        ],
+        "outputs": [
+            "PhOSoundWarning[In]"
+        ],
+        "PLM Parameters": [
+            "HORN_TR_DUTY_CYCLE",
+            "HORN_TR_FREQ"
+        ],
+        "Caliberation Parameters": "",
+        "Req_ids": [
+            {
+                "req_id": "REQ-0937070 C",
+                "Content": "The system shall initialize the output flows at the following values:(SoundWarningCtrl=0%)(ManualSoundWarningAvailability = False)(PanicModeSoundWarningAvailability = False)(AlarmSoundWarningAvailability = False)(TR_SoundWarningAvailability = False)(Horn_TR_Request = False)(FOTA_Inhibition = False)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998257 A",
+                "Content": "The system shall always make the thermal runaway hazard sound warning available(TR_SoundWarningAvailability = True)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998265 B",
+                "Content": "IF the following condition becomes true [A request for thermal runaway hazard warning is received(BatteryThermalRunawayAlert = Thermal_Runaway_Alert)AND the vehicle is at a standstill(SafetyStandstill = TRUE)]THEN the system shall set the internal request for thermal runaway hazard warning to true (Horn_TR_Request = True)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0998267 B",
+                "Content": "IF the thermal runaway hazard sound warning is available(TR_SoundWarningAvailability = True)AND the internal thermal runaway hazard warning is requested (Horn_TR_Request = True)         THEN the warning audible signal shall be controlled at the frequency (HORN_TR_FREQ) with a (HORN_TR_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+                "DiversityExpression": ""
+            },
+            {
+                "req_id": "REQ-0899267 D",
+                "Content": "IF a sound control value is received(SoundWarningCtrl = 100%) THEN the system shall switch ON the Horn system (PhOSoundWarning = HORN_ON_INTENSITY) in less than <30 ms>ELSE the system shall switch OFF the Horn system(PhOSoundWarning= HORN_OFF_INTENSITY) in less than <30 ms>",
+                "DiversityExpression": ""
+            }
+        ]
+    },
+    {
+        "usecase": "FOTA Update Sound Warning inhibition",
+	  "Description":"This use case describes the FOTA inhibition request",
+        "inputs": [
+            "VehOTAState[NA]"
+        ],
+        "outputs": [
+            "FOTA_Inhibition[In]"
+        ],
+        "PLM Parameters": [],
+        "Caliberation Parameters": "",
+        "Req_ids": [
+            {
+                "req_id": "REQ-0998271 B",
+                "Content": "IF a FOTA update is ending(VehOTAState = Standby)THEN sound warnings are not inhibited anymore(FOTA_Inhibition = False)",
+                "DiversityExpression": ""
+            }
+        ]
+    },
+    {
+        "Coverage": 86.95652173913044,
+        "Ungrouped_reqids": [
+            "REQ-0998450 B",
+            "REQ-0986468 B",
+            "REQ-0998269 B"
+        ]
+    }
+]

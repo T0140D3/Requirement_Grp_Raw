@@ -1,0 +1,154 @@
+[
+  {
+    "req_id": "REQ-0928107  A",
+    "fct_name": " FCT_MANAGE_Priority_Driving_School_Signaling_Req",
+    "content": "At initialization the following flows will be set as follows:TurnIndicatorReq = IDLEHornActivationReq = FALSE",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0944597  B",
+    "fct_name": " FCT_MANAGE_Priority_Driving_School_Signaling_Req",
+    "content": "IF the driving school instructor has just demanded to activate the horn (HornActivationDrivingSchoolDmd has a transition from a different value to ACTIVE)OR the driver has just requested to activate the horn (HornRequest has a transition from a different value to True)THEN the system shall generate a horn activation request (HornActivationReq = True)",
+    "diversi": [
+      "HP-0001187 [ STELLANTIS DICTIONARY Q3_2024 - \u221e ] AND CBX OPTION_DRIVER_SCHOOL_MODULE(CBX_01 WITH)"
+    ]
+  },
+  {
+    "req_id": "REQ-0944599  C",
+    "fct_name": " FCT_MANAGE_Priority_Driving_School_Signaling_Req",
+    "content": "IF the driving school instructor requested to deactivate the horn (HornActivationDrivingSchoolDmd = NOT_ACTIVE)AND the driver requested to deactivate the horn (HornRequest = False)THEN the system shall generate a horn deactivation request (HornActivationReq = False)",
+    "diversi": [
+      "HP-0001187 [ STELLANTIS DICTIONARY Q3_2024 - \u221e ] AND CBX OPTION_DRIVER_SCHOOL_MODULE(CBX_01 WITH)"
+    ]
+  },
+  {
+    "req_id": "REQ-0944601  B",
+    "fct_name": " FCT_MANAGE_Priority_Driving_School_Signaling_Req",
+    "content": "IF the driver requests to activate the horn (HornRequest = True)THEN the system shall generate a horn activation request (HornActivationReq = True)",
+    "diversi": [
+      "HP-0001187 [ STELLANTIS DICTIONARY Q3_2024 - \u221e ] AND CBX OPTION_DRIVER_SCHOOL_MODULE(CBX_00 WITHOUT)"
+    ]
+  },
+  {
+    "req_id": "REQ-0944602  B",
+    "fct_name": " FCT_MANAGE_Priority_Driving_School_Signaling_Req",
+    "content": "IF the driver requests to deactivate the horn (HornRequest = False)THEN the system shall generate a horn deactivation request (HornActivationReq = False)",
+    "diversi": [
+      "HP-0001187 [ STELLANTIS DICTIONARY Q3_2024 - \u221e ] AND CBX OPTION_DRIVER_SCHOOL_MODULE(CBX_00 WITHOUT)"
+    ]
+  },
+  {
+    "req_id": "REQ-0937070  C",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "The system shall initialize the output flows at the following values:(SoundWarningCtrl=0%)(ManualSoundWarningAvailability = False)(PanicModeSoundWarningAvailability = False)(AlarmSoundWarningAvailability = False)(TR_SoundWarningAvailability = False)(Horn_TR_Request = False)(FOTA_Inhibition = False)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0937071  C",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the vehicle is in plant, transport or customer mode[(VehicleModeConfiguration = Plant_Mode)OR(VehicleModeConfiguration = Logistic_mode)OR(VehicleModeConfiguration = Client)]AND there is no FOTA update in progress(FOTA_Inhibition = False)THEN the system shall enable the manual sound warning (ManualSoundWarningAvailability = True)ElseThe system shall make unavailable the manual sound warning(ManualSoundWarningAvailability = False)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0998254  B",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the vehicle is customer mode(VehicleModeConfiguration = Client) AND vehicle is in state 0 or state 1[(VehicleIgnitionStatus = IGN_LK)OR(PropulsionSystemActive = FALSE)]AND there is no FOTA update in progress(FOTA_Inhibition = False)THEN the system shall enable the sound warning (PanicModeSoundWarningAvailability = True)ELSEThe system shall make unavailable the sound warning(PanicModeSoundWarningAvailability = False)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0998256  B",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the vehicle is in customer mode(VehicleModeConfiguration = Client)AND vehicle is in state 0(VehicleIgnitionStatus = IGN_LK)THEN the system shall enable the sound warning (AlarmSoundWarningAvailability = True)ELSEThe system shall make unavailable the theft alarm sound warning(AlarmSoundWarningAvailability = False)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0998257  A",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "The system shall always make the thermal runaway hazard sound warning available(TR_SoundWarningAvailability = True)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0998269  B",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF a FOTA update is starting [(VehOTAState = Update) AND (VehOTASubState switches into INSTALL) ]THEN sound warnings are inhibited (FOTA_Inhibition = True)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0998271  B",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF a FOTA update is ending(VehOTAState = Standby)THEN sound warnings are not inhibited anymore(FOTA_Inhibition = False)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0937072  D",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the manual sound warning is available(ManualSoundWarningAvailability = True)AND the manual horn activation is requested (HornActivationReq = True)AND there is no cool down of the Manual Horn(MAN_HORN_COOL_DOWN = Not Active)THEN the subsystem shall control the audible sound warning(SoundWarningCtrl = 100%) AND the subsystem shall reset the timer TIME_MAN_HORN_ON to 0 and start to countAND the subsystem shall freeze the timer TIME_MAN_HORN_OFF",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0939555  D",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the theft alarm sound warning is available(AlarmSoundWarningAvailability = True)AND the horn is requested for theft alarm system(TheftAlarmStatus = Active Alarm State Horn)         THEN the warning audible signal shall be controlled at the frequency (HORN_ALARM_FREQ) with a (HORN_ALARM_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+    "diversi": [
+      "HP-0001187 [ STELLANTIS DICTIONARY Q4_2024 - \u221e ] AND DLH CHARACTERISTIC ALARMS(DLH_03 WITH VEHICLE HORN) AND NOT DAB ANTI-THEFT ALARM(DAB_00 WITHOUT)"
+    ]
+  },
+  {
+    "req_id": "REQ-0986424  C",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the panic mode sound warning is available(PanicModeSoundWarningAvailability = True)AND the horn is requested for panic mode(PanicModeActiveRequest = Active)         THEN the warning audible signal shall be controlled at the frequency (HORN_PANIC_FREQ) with a (HORN_PANIC_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+    "diversi": [
+      "HP-0001187 [ STELLANTIS DICTIONARY Q1_2025 - \u221e ] AND ( D15 PANIC MODE (  D15_01 WITH )  AND  CHT TYPE_PANIC_MODE (  CHT_02 HAZARD_WARNING_AND_HORN ) )"
+    ]
+  },
+  {
+    "req_id": "REQ-0937073  D",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the manual horn activation is not requested[(ManualSoundWarningAvailability = False)OR(HornActivationReq = False)OR the manual horn is active for a too long time(TIME_MAN_HORN_ON>=T_MAX_MAN_HORN_ON)]\u202fAND the horn is not requested for theft alarm System[(TheftAlarmStatus <>Active Alarm State Horn)OR(AlarmSoundWarningAvailability =False)]\u202fAND the horn is not requested for panic mode[(PanicModeActiveRequest =Not_Active)OR(PanicModeSoundWarningAvailability = False)]\u202fAND the horn is not requested for thermal runaway[(Horn_TR_Request = False)OR(TR_SoundWarningAvailability = False)]\u202fTHENthe warning audible signal shall not be controlled(SoundWarningCtrl=0%)\u202fANDthesubsystem shall reset the timer TIME_MAN_HORN_OFF to 0 and start to countAND the subsystem shall freeze the timerTIME_MAN_HORN_ON",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0986468  B",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF multiple different horn behaviours are requested or activated simultaneously, THEN the system shall only activate the highest priority sub system.The priority table below shall be shown with the highest priority behaviour at the top of the table:Horn requests priority1. Manual request2. Thermal runaway request3. Panic mode request4. Theft alarm request",
+    "diversi": [
+      "HP-0001187 [ STELLANTIS DICTIONARY Q4_2024 - \u221e ] AND D15 PANIC MODE(D15_01 WITH) OR DLH CHARACTERISTIC ALARMS(DLH_03 WITH VEHICLE HORN) AND NOT DAB ANTI-THEFT ALARM(DAB_00 WITHOUT)"
+    ]
+  },
+  {
+    "req_id": "REQ-0986471  C",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the manual horn is active for a too long time(TIME_MAN_HORN_ON >= T_MAX_MAN_HORN_ONTHEN the Manual Horn Cooldown activates(MAN_HORN_COOL_DOWN=Active)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0986472  C",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the manual horn is inactive for enough time(TIME_MAN_HORN_OFF >= T_MAN_HORN_COOL_DOWN)AND the manual horn activation is NOT requested during T_HORN_REQ_COOL_DOWN(HornActivationReq = False during T_HORN_REQ_COOL_DOWN) THEN the manual Horn Cooldown deactivates(MAN_HORN_COOL_DOWN = Not active)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0998265  B",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the following condition becomes true [A request for thermal runaway hazard warning is received(BatteryThermalRunawayAlert = Thermal_Runaway_Alert)AND the vehicle is at a standstill(SafetyStandstill = TRUE)]THEN the system shall set the internal request for thermal runaway hazard warning to true (Horn_TR_Request = True)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0998267  B",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the thermal runaway hazard sound warning is available(TR_SoundWarningAvailability = True)AND the internal thermal runaway hazard warning is requested (Horn_TR_Request = True)         THEN the warning audible signal shall be controlled at the frequency (HORN_TR_FREQ) with a (HORN_TR_DUTY_CYCLE) duty cycle.(SoundWarningCtrl = 100%)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0998450  B",
+    "fct_name": " FCT_MANAGE_Sound_Warning",
+    "content": "IF the internal request for thermal runaway hazard is active(Horn_TR_Request = True)AND HornActivationReq switches from False to True(HornActivationReq = True)THEN the system shall set the internal request for thermal runaway hazard warning to false(Horn_TR_Request = False)",
+    "diversi": ""
+  },
+  {
+    "req_id": "REQ-0899267  D",
+    "fct_name": " FCT_ACTUATE_Sound_Warning",
+    "content": "IF a sound control value is received(SoundWarningCtrl = 100%) THEN the system shall switch ON the Horn system (PhOSoundWarning = HORN_ON_INTENSITY) in less than <30 ms>ELSE the system shall switch OFF the Horn system(PhOSoundWarning= HORN_OFF_INTENSITY) in less than <30 ms>",
+    "diversi": ""
+  }
+]

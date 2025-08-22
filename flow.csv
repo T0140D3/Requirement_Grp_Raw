@@ -1,0 +1,43 @@
+,flowtitle,heading,Status,FCT,var_status,External/internal,P/C,sheet,IJK
+0,HornActivationDrivingSchoolDmd,Effectivity of FA : FCT_MANAGE_Priority_Driving_School_Signaling_Req,Flowtitiles, FCT_MANAGE_Priority_Driving_School_Signaling_Req,HornActivationDrivingSchoolDmd_EX_C_#HS4_DSM_DATA_1(HS_CAN4)#*Network,External,C,Network,HS4_DSM_DATA_1(HS_CAN4)
+1,HornRequest,Effectivity of FA : FCT_MANAGE_Priority_Driving_School_Signaling_Req,Flowtitiles, FCT_MANAGE_Priority_Driving_School_Signaling_Req,HornRequest_EX_C#Wire_STLA#*Wired,External,C,Wired,Wire_STLA
+2,TurnIndicatorDriverDmd,Effectivity of FA : FCT_MANAGE_Priority_Driving_School_Signaling_Req,Flowtitiles, FCT_MANAGE_Priority_Driving_School_Signaling_Req,TurnIndicatorDriverDmd_EX_C_#FD21_SCCM_DATA_1(FD_CAN21)#*Network,External,C,Network,FD21_SCCM_DATA_1(FD_CAN21)
+3,TurnIndicatorDrivingSchoolDmd,Effectivity of FA : FCT_MANAGE_Priority_Driving_School_Signaling_Req,Flowtitiles, FCT_MANAGE_Priority_Driving_School_Signaling_Req,TurnIndicatorDrivingSchoolDmd_EX_C_#HS4_DSM_DATA_1(HS_CAN4)#*Network,External,C,Network,HS4_DSM_DATA_1(HS_CAN4)
+4,HornActivationReq,Effectivity of FA : FCT_MANAGE_Priority_Driving_School_Signaling_Req,Flowtitiles, FCT_MANAGE_Priority_Driving_School_Signaling_Req,HornActivationReq_In*NA,Internal,In,NA,NA
+5,TurnIndicatorReq,Effectivity of FA : FCT_MANAGE_Priority_Driving_School_Signaling_Req,Flowtitiles, FCT_MANAGE_Priority_Driving_School_Signaling_Req,TurnIndicatorReq_In*NA,Internal,In,NA,NA
+7,BatteryThermalRunawayAlert,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,BatteryThermalRunawayAlert_EX_C_#FD14_ZCU_F_DATA_7(FD_CAN14)#*Network,External,C,Network,FD14_ZCU_F_DATA_7(FD_CAN14)
+8,DeviceLeftVehicleAudibleChirp,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,DeviceLeftVehicleAudibleChirp_In*NA,Internal,In,NA,NA
+9,HornActivationReq,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,HornActivationReq_In*NA,Internal,In,NA,NA
+10,PanicModeActiveRequest,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,PanicModeActiveRequest_In*NA,Internal,In,NA,NA
+11,PropulsionSystemActive,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,PropulsionSystemActive_In*NA,Internal,In,NA,NA
+12,RemoteStartAudibleChirpRequest,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,RemoteStartAudibleChirpRequest_In*NA,Internal,In,NA,NA
+13,RemoteStartStatus,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,RemoteStartStatus_In*NA,Internal,In,NA,NA
+14,ScheduledCabinConditionStatus,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,ScheduledCabinConditionStatus_In*NA,Internal,In,NA,NA
+15,TheftAlarmStatus,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,TheftAlarmStatus_In*NA,Internal,In,NA,NA
+16,VehicleIgnitionStatus,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,VehicleIgnitionStatus_In*NA,Internal,In,NA,NA
+17,VehicleLongSpeedComputedValue,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,VehicleLongSpeedComputedValue_EX_C_#FD14_BSM_DATA_4(FD_CAN14)#*Network,External,C,Network,FD14_BSM_DATA_4(FD_CAN14)
+18,VehicleModeConfiguration,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,VehicleModeConfiguration_In*NA,Internal,In,NA,NA
+19,VehicleOTAMode,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,VehicleOTAMode_In*NA,Internal,In,NA,NA
+20,SoundWarningCtrl,Effectivity of FA : FCT_MANAGE_Sound_Warning,Flowtitiles, FCT_MANAGE_Sound_Warning,SoundWarningCtrl_EX_P#Wire_STLA#*Wired,External,P,Wired,Wire_STLA
+21,HORN_ALARM_FREQ,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,HORN_ALARM_FREQ_In*NA,Internal,In,NA,NA
+22,HORN_ALARM_DUTY_CYCLE,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,HORN_ALARM_DUTY_CYCLE_In*NA,Internal,In,NA,NA
+23,T_MAX_MAN_HORN_ON,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,T_MAX_MAN_HORN_ON_In*NA,Internal,In,NA,NA
+24,T_MAN_HORN_COOL_DOWN,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,T_MAN_HORN_COOL_DOWN_In*NA,Internal,In,NA,NA
+25,HORN_PANIC_FREQ,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,HORN_PANIC_FREQ_In*NA,Internal,In,NA,NA
+26,HORN_PANIC_DUTY_CYCLE,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,HORN_PANIC_DUTY_CYCLE_In*NA,Internal,In,NA,NA
+27,HORN_TR_DUTY_CYCLE,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,HORN_TR_DUTY_CYCLE_In*NA,Internal,In,NA,NA
+28,HORN_TR_FREQ,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,HORN_TR_FREQ_In*NA,Internal,In,NA,NA
+29,T_HORN_REQ_COOL_DOWN,Effectivity of FA : FCT_MANAGE_Sound_Warning,PLM Parameters, FCT_MANAGE_Sound_Warning,T_HORN_REQ_COOL_DOWN_In*NA,Internal,In,NA,NA
+30,ManualSoundWarningAvailability,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,ManualSoundWarningAvailability_In*NA,Internal,In,NA,NA
+31,PanicModeSoundWarningAvailability,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,PanicModeSoundWarningAvailability_In*NA,Internal,In,NA,NA
+32,AlarmSoundWarningAvailability,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,AlarmSoundWarningAvailability_In*NA,Internal,In,NA,NA
+33,TR_SoundWarningAvailability,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,TR_SoundWarningAvailability_In*NA,Internal,In,NA,NA
+34,Horn_TR_Request,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,Horn_TR_Request_In*NA,Internal,In,NA,NA
+35,FOTA_Inhibition,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,FOTA_Inhibition_In*NA,Internal,In,NA,NA
+36,TIME_MAN_HORN_ON,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,TIME_MAN_HORN_ON_In*NA,Internal,In,NA,NA
+37,TIME_MAN_HORN_OFF,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,TIME_MAN_HORN_OFF_In*NA,Internal,In,NA,NA
+38,MAN_HORN_COOL_DOWN,Effectivity of FA : FCT_MANAGE_Sound_Warning,Internal, FCT_MANAGE_Sound_Warning,MAN_HORN_COOL_DOWN_In*NA,Internal,In,NA,NA
+39,SoundWarningCtrl,Effectivity of FA : FCT_ACTUATE_Sound_Warning,Flowtitiles, FCT_ACTUATE_Sound_Warning,SoundWarningCtrl_In*wired,Internal,In,wired,NA
+40,PhOSoundWarning,Effectivity of FA : FCT_ACTUATE_Sound_Warning,Flowtitiles, FCT_ACTUATE_Sound_Warning,PhOSoundWarning_In*NA,Internal,In,NA,NA
+41,HORN_ON_INTENSITY,Effectivity of FA : FCT_ACTUATE_Sound_Warning,PLM Parameters, FCT_ACTUATE_Sound_Warning,HORN_ON_INTENSITY_In*NA,Internal,In,NA,NA
+42,HORN_OFF_INTENSITY,Effectivity of FA : FCT_ACTUATE_Sound_Warning,PLM Parameters, FCT_ACTUATE_Sound_Warning,HORN_OFF_INTENSITY_In*NA,Internal,In,NA,NA
